@@ -420,7 +420,7 @@ func (c *cssMinifier) minifyDeclaration(property []byte, components []css.Token)
 			for i := 0; i < len(values); i++ {
 				if values[i].TokenType == css.IdentToken {
 					val := css.ToHash(values[i].Data)
-					if val == css.None || val == css.Currentcolor || val == css.Medium {
+					if val == css.None {
 						values = append(values[:i], values[i+1:]...)
 						i--
 					}
@@ -433,7 +433,7 @@ func (c *cssMinifier) minifyDeclaration(property []byte, components []css.Token)
 			for i := 0; i < len(values); i++ {
 				if values[i].TokenType == css.IdentToken {
 					val := css.ToHash(values[i].Data)
-					if val == css.None || val == css.Medium { // color=invert is not supported by all browsers
+					if val == css.None { // color=invert is not supported by all browsers
 						values = append(values[:i], values[i+1:]...)
 						i--
 					}
